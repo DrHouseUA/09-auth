@@ -1,3 +1,4 @@
+import { User } from "@/types/user";
 import axios from "axios";
 
 const nextServer = axios.create({
@@ -8,12 +9,6 @@ const nextServer = axios.create({
 interface UserData {
   email: string;
   password: string;
-}
-
-export interface User {
-  username: string;
-  email: string;
-  avatar: string;
 }
 
 interface SessionResponse {

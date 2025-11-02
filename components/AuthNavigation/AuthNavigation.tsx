@@ -13,7 +13,7 @@ export default function AuthNavigation() {
   const handleLogout = async () => {
     await logoutUser();
     clearIsAuthenticated();
-    router.push("/");
+    router.push("/sign-in");
   };
 
   return (

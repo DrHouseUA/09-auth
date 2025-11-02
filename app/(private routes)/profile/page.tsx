@@ -2,6 +2,31 @@ import Image from "next/image";
 import css from "./ProfilePage.module.css";
 import { getServerUser } from "@/lib/api/serverApi";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const user = await getServerUser();
+
+  return {
+    title: `${user.username} profile page`,
+    description: `Profile page of ${user.username}`,
+    openGraph: {
+      title: `${user.username} profile page`,
+      description: `Profile page of ${user.username}`,
+      url: `app/profile`,
+      siteName: "NoteHub",
+      images: [
+        {
+          url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Note Hub image",
+        },
+      ],
+      type: "article",
+    },
+  };
+}
 
 export default async function ProfilePage() {
   const user = await getServerUser();
@@ -16,7 +41,7 @@ export default async function ProfilePage() {
         </div>
         <div className={css.avatarWrapper}>
           <Image
-            src={"/"}
+            src={user.avatar}
             alt="User Avatar"
             width={120}
             height={120}

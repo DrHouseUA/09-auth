@@ -7,6 +7,7 @@ import { cookies } from "next/headers";
 export const fetchNotes = async (
   params: FetchNotesParams
 ): Promise<FetchNotesResponse> => {
+  const cookieStore = await cookies();
   const response = await nextServerAPI.get<FetchNotesResponse>(`/notes`, {
     params,
     headers: {
@@ -17,6 +18,7 @@ export const fetchNotes = async (
 };
 
 export async function getNoteById(id: string) {
+  const cookieStore = await cookies();
   const res = await nextServerAPI.get<Note>(`/notes/${id}`, {
     headers: {
       Cookie: cookieStore.toString(),

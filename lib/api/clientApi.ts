@@ -82,10 +82,6 @@ export async function getUser(): Promise<User> {
 }
 
 export async function updateUser(userData: UserUpdatedData): Promise<User> {
-  const res = await nextServerAPI.patch("/users/me", userData, {
-    headers: {
-      Cookie: cookieStore.toString(),
-    },
-  });
+  const res = await nextServerAPI.patch("/users/me", userData);
   return res.data;
 }
